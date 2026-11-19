@@ -1,8 +1,5 @@
 package com.cybertron.autobot;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
 public class Main {
 
     public static void main(String[] args) {
@@ -12,10 +9,12 @@ public class Main {
         Autobot optimus = new Autobot("Optimus Prime", 850.0, 10);
         Autobot bumblebee = new Autobot("Bumblebee", 320.0, 5);
         Autobot ratchet = new Autobot("Ratchet", 180.0, 7);
+        Autobot jazz = new Autobot("Jazz", 0.0, 4);
 
         gerenciador.adicionar(optimus);
         gerenciador.adicionar(bumblebee);
         gerenciador.adicionar(ratchet);
+        gerenciador.adicionar(jazz);
 
         System.out.println(
                 "Energon total: " + gerenciador.calcularEnergonTotal()
@@ -31,10 +30,19 @@ public class Main {
 
         gerenciador.reparar(ratchet);
 
-        System.out.println("Energon do Ratchet: " + ratchet.getEnergon());
+        System.out.println(
+                "Energon do Ratchet: " + ratchet.getEnergon()
+        );
 
         System.out.println(
                 "Classificação: " + gerenciador.classificar(ratchet)
         );
+
+        System.out.println("\nAutobots indisponíveis:");
+
+        for (Autobot autobot :
+                gerenciador.listarAutobotsIndisponiveis()) {
+            System.out.println(autobot.getNome());
+        }
     }
 }
