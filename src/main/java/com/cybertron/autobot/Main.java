@@ -4,7 +4,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Main {
+
     public static void main(String[] args) {
+
         GerenciadorAutobots gerenciador = new GerenciadorAutobots();
 
         Autobot optimus = new Autobot("Optimus Prime", 850.0, 10);
@@ -15,20 +17,24 @@ public class Main {
         gerenciador.adicionar(bumblebee);
         gerenciador.adicionar(ratchet);
 
-        System.out.println("Energon total: " + gerenciador.calcularEnergonTotal());
+        System.out.println(
+                "Energon total: " + gerenciador.calcularEnergonTotal()
+        );
 
         Autobot encontrado = gerenciador.buscar("Bumblebee");
 
         if (encontrado != null) {
-            System.out.println("Encontrado: " + encontrado.
-                    n);
+            System.out.println("Encontrado: " + encontrado.getNome());
         } else {
-            System.out.println("Autobot nao encontrado");
+            System.out.println("Autobot não encontrado.");
         }
 
         gerenciador.reparar(ratchet);
 
-        System.out.println("Energon do Ratchet: " + ratchet.e);
-        System.out.println("Classificacao: " + gerenciador.classificar(ratchet));
+        System.out.println("Energon do Ratchet: " + ratchet.getEnergon());
+
+        System.out.println(
+                "Classificação: " + gerenciador.classificar(ratchet)
+        );
     }
 }
