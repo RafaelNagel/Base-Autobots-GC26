@@ -8,6 +8,12 @@ public class Autobot {
     private int nivel;
 
     public Autobot(String nome, double energon, int nivel) {
+        if (nivel < 1 || nivel > 10) {
+            throw new IllegalArgumentException(
+                    "O nível deve estar entre 1 e 10."
+            );
+        }
+
         this.nome = nome;
         this.energon = energon;
         this.nivel = nivel;
@@ -25,23 +31,17 @@ public class Autobot {
         return nivel;
     }
 
-    public void adicionarEnergon(double quantidade) {
+    public void reparar(double quantidade) {
+        if (energon < 0) {
+            throw new IllegalStateException("Energon negativo.");
+        }
+
         if (quantidade <= 0) {
             throw new IllegalArgumentException(
-                    "A quantidade de energon deve ser positiva."
+                    "Quantidade de reparo inválida."
             );
         }
 
-        this.energon += quantidade;
-    }
-
-    public void reparar() {
-        if (energon < 0) {
-            throw new IllegalStateException(
-                    "Não é possível reparar um Autobot com energon negativo."
-            );
-        }
-
-        adicionarEnergon(100);
+        energon += quantidade;
     }
 }
